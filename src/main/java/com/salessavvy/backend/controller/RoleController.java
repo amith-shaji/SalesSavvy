@@ -9,7 +9,6 @@ import com.salessavvy.backend.service.RoleService;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -20,6 +19,9 @@ public class RoleController {
      public RoleController(RoleService roleService) {
         this.roleService = roleService;
      }
+     
+     // This method may never be reached because spring security asks  authentication and authorization before controller
+     // So you have to configure Spring security first
 
      @GetMapping
      public List<Role> getRoles() {
