@@ -1,6 +1,8 @@
 package com.salessavvy.backend.controller;
 
 import com.salessavvy.backend.repository.UserRepository;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,15 @@ public UserResponse me() {
     String email = authentication.getName();
 
     return userService.getCurrentUser(email);
+}
+
+
+// We can give authroization to methods instaed of url in SecurityConfig. This is called method level authorization.
+// Before executing this method, check whether the authenticated user has ROLE_ADMIN
+@PreAuthorize("hasRole('ADMIN')")
+@GetMapping("/admin/test")
+public String adminTest() {
+    return "You are an admin!";
 }
 
 

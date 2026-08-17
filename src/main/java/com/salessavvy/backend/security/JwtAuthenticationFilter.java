@@ -40,6 +40,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {  // run once
             String token = authHeader.substring(7); // Remove "Bearer " and keep only the JWT
             String extractedEmail = jwtService.extractEmail(token);
             UserDetails userDetails = userDetailsService.loadUserByUsername(extractedEmail);
+            System.out.println("EMAIL: " + userDetails.getUsername());
+System.out.println("AUTHORITIES: " + userDetails.getAuthorities());
 
             UsernamePasswordAuthenticationToken authentication =
         new UsernamePasswordAuthenticationToken(

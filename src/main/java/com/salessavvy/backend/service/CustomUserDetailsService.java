@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService{ // UserDeta
         return org.springframework.security.core.userdetails.User
         .withUsername(user.getEmail())
         .password(user.getPassword())
-        .roles(user.getRole().getName())
+        .roles(user.getRole().getName()) // Spring creates ROLE_ADMIN if user is admin with this prefix so later .hasRole("ADMIN") matches 
         .build();
     }
     

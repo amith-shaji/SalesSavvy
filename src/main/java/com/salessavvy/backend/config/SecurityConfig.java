@@ -34,6 +34,8 @@ public class SecurityConfig {
         .requestMatchers("/api/roles").permitAll()
         .requestMatchers("/api/auth/register").permitAll()
         .requestMatchers("/api/auth/login").permitAll()
+        // Role based Authroization.  Only allows ADMIN to access this end point
+        .requestMatchers("/api/auth/admin/**").hasRole("ADMIN") // Does SecurityContext contain ROLE_ADMIN?
         .anyRequest().authenticated()   // Does the SecurityContext contain an authenticated Authentication?
     )
     .addFilterBefore(
